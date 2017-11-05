@@ -22,30 +22,45 @@ function move(action, actionArrow) {
 }
 
 document.onkeydown = function(e) {
+    var timeStart = null;
+    clearInterval(timeStart);
     // clearInterval(timeStart);
-    // switch (e.keyCode) {
-    //     // left
-    //     case 37:
-    //         action = 'left';
-    //         actionArrow = -10;
-    //         break;
-    //     // up
-    //     case 38:
-    //         action = 'up';
-    //         actionArrow = -10;
-    //         break;
-    //     // right
-    //     case 39:
-    //         action = 'left';
-    //         actionArrow = 10;
-    //         break;
-    //     // down
-    //     case 40:
-    //         action = 'up';
-    //         actionArrow = 10;
-    //         break;
-    //     default:
-    //         break;
-    // }
+    var snake = document.getElementById('snake');
+    snake.style.position = 'relative';
+    // timeStart = setInterval(function() {
+    //     snake.style.left = `${String(Number(snake.style.left.replace('px', '')) + 10)}px`;
+    // },1000);
+    switch (e.keyCode) {
+        // left
+        case 37:
+            clearInterval(timeStart);
+            timeStart = setInterval(function() {
+                snake.style.left = `${String(Number(snake.style.left.replace('px', '')) + 10)}px`;
+            },1000);
+            break;
+        // up
+        case 38:
+            clearInterval(timeStart);
+            timeStart = setInterval(function() {
+                snake.style.top = `${String(Number(snake.style.top.replace('px', '')) + 10)}px`;
+            },1000);
+            break;
+        // right
+        case 39:
+            clearInterval(timeStart);
+            timeStart = setInterval(function() {
+                snake.style.left = `${String(Number(snake.style.left.replace('px', '')) - 10)}px`;
+            },1000);
+            break;
+        // down
+        case 40:
+            clearInterval(timeStart);
+            timeStart = setInterval(function() {
+                snake.style.top = `${String(Number(snake.style.top.replace('px', '')) - 10)}px`;
+            },1000);
+            break;
+        default:
+            break;
+    }
     // timeStart = setInterval(move(action, actionArrow),1000);
 };
